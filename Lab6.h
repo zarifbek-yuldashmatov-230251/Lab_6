@@ -2,7 +2,7 @@
 
 #ifndef LAB6_H
 #define LAB6_H
-
+#include <Vector>
 class Person {
 private:
     int nationalID;
@@ -90,7 +90,35 @@ class TeachingAssistant:public Student, public Teacher {
     }
     TeachingAssistant(string name, int age, int id, float gpa, string subject, int hours):Teacher(name, age, id, subject), hoursPerWeek(hours) {
         setGPA(gpa);
+    };
+class Course{
+private:
+Teacher courseTeacher;
+vector<Student *> students;
+public:
+Course(){
+cout<<"Course constructor called\n";
+}
+~Course(){
+cout<<"Course destructor called. Note: Aggregated students are NOT automoatically deleted!\n";
+}
+void setCourseTeacher(string name, int age, int id, string subject){
+    courseTeacher.setname(name);
+    courseTeacher.setage(age);
+    courseTeacher.setID(id);
+    courseTeacher.setSubject(subject);
+}
+void addStudent(Student *student){
+    students.push_back(student);
+}
+void displayCourse(){
+courseTeacher.displayTeacher();
+    for(int i=0; i<students.size();i++){
+    cout<<"----------------\n;
+        students[i]->displayStudent();
     }
+    
+}
 };
 
 
